@@ -19,5 +19,5 @@ const Books = ({books}) => {
 module.exports = (connect(
     state => {
         return { books: state.books }
-    },
+    }
 )(Books));

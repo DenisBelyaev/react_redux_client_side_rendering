@@ -1,7 +1,7 @@
 "use strict"
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
+import { compose, createStore, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -9,23 +9,29 @@ import { createHistory } from 'history';
 import routes from './routes';
 import reducer from './reducer';
 import DevTools from './components/DevTools';
+import my from './middlewares/my';
+import promiseMiddleware from 'redux-promise';
 
-var initialState = {
+const createStoreWithMiddleware = compose(
+    applyMiddleware(promiseMiddleware),
+    DevTools.instrument()
+)(createStore);
+
+let initial = {
     books: [
-        {name: 'zxc'}
+        {name: 'hello'}
     ]
 }
 
-const store = createStore(
-    reducer,
-    initialState,
-    DevTools.instrument()
-)
+const store = createStoreWithMiddleware(reducer, initial);
 const history = syncHistoryWithStore(browserHistory, store)
 
 const Root = () => (
     <Provider store={store}>
-        <Router history={history} routes={routes} />
+        <div>
+            <Router history={history} routes={routes} />
+            <DevTools />
+        </div>
     </Provider>
 )
 

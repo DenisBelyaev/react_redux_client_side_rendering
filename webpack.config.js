@@ -23,7 +23,14 @@ module.exports = {
 
     module: {
         loaders: [
-            { test: /\.js$/, exclude: /node_modules/, loaders: ["babel?presets[]=es2015&presets[]=stage-0&presets[]=react"] },
+            {
+                test: /\.js$/, exclude: /node_modules/,
+                loader: "babel",
+                query: {
+                    presets: ['es2015', 'stage-0', 'react'],
+                    plugins: ['transform-runtime']
+                }
+            },
             { test: /\.css$/, loader: 'style!css' }
         ]
     },
