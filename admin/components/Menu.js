@@ -2,13 +2,15 @@
 
 import React from 'react';
 import {Link} from 'react-router';
+//import '../styles';
+
 
 const Menu = () => (
     <div>
-        <a href="/" activeClassName="active">home</a>
+        <a href="/" >home</a>
         <ul>
-            <li><Link to="/books" activeClassName="active">books</Link></li>
-            <li><Link to="/card" activeClassName="active">card</Link></li>
+            <li><Link to="/books" >books</Link></li>
+            <li><Link to="/card" >card</Link></li>
         </ul>
     </div>
 );

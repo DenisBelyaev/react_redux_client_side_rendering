@@ -9,6 +9,11 @@ var bookSchema = new Schema({
         // required: true,
         // unique:   true
     },
+    description:   {
+        type:     String,
+        // required: true,
+        // unique:   true
+    },
     created: {
         type:    Date,
         default: Date.now

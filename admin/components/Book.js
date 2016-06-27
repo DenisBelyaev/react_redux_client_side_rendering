@@ -3,12 +3,13 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const Book = ({children}) => {
+const Book = ({book}) => {
 
     return (
-        <div>
-            {children}
-        </div>
+        <tr>
+            <td>{book.name}</td>
+            <td>{book.description}</td>
+        </tr>
     )
 }
 

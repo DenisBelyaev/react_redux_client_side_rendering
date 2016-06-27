@@ -5,39 +5,29 @@ import { compose, createStore, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { createHistory } from 'history';
 import routes from './routes';
-import reducer from './reducer';
-import DevTools from './components/DevTools';
-import my from './middlewares/my';
-import promiseMiddleware from 'redux-promise';
+import { configureStore, DevTools } from './store';
+import { ReduxAsyncConnect } from 'redux-connect';
 
-const createStoreWithMiddleware = compose(
-    applyMiddleware(promiseMiddleware),
-    DevTools.instrument()
-)(createStore);
-
-let initial = {
-    books: [
-        {name: 'hello'}
-    ]
-}
-
-const store = createStoreWithMiddleware(reducer, initial);
-const history = syncHistoryWithStore(browserHistory, store)
-
-const Root = () => (
-    <Provider store={store}>
-        <div>
-            <Router history={history} routes={routes} />
-            <DevTools />
-        </div>
-    </Provider>
-)
+const store = configureStore(browserHistory, {});
+const history = syncHistoryWithStore(browserHistory, store);
+//render={(props) => <ReduxAsyncConnect {...props}/>}
+render(
+    <Provider store={store} key="provider">
+        <Router history={history} routes={routes} />
+    </Provider>,
+    document.getElementById('app')
+);
 
 render(
-    <Root />,
-    document.getElementById('app')
+    <Provider store={store}>
+        <DevTools />
+    </Provider>,
+    document.getElementById('devtools')
 )
+
+
+
+
 
 

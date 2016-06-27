@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kaktusfresh/react_redux_client_side_rendering#readme",
   "dependencies": {
+    "babel-polyfill": "^6.9.1",
     "co-busboy": "^1.3.1",
     "config": "^1.21.0",
     "es6-promise": "^3.2.1",
@@ -32,6 +33,7 @@
     "koa-static": "^2.0.0",
     "koa-views": "^4.1.0",
     "mongoose": "^4.5.1",
+    "node-config": "0.0.2",
     "npm": "^3.9.6",
     "path": "^0.12.7",
     "react": "^15.1.0",
@@ -50,9 +52,18 @@
   "devDependencies": {
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-config-loader": "^2.1.0",
+    "postcss-loader": "^0.9.1",
+    "redux-connect": "^2.4.0",
+    "rimraf": "^2.5.2",
+    "style-loader": "^0.13.1",
+    "stylus-loader": "^2.1.1",
     "webpack": "^1.13.1"
   }
 }

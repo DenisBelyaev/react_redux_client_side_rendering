@@ -6,10 +6,11 @@ const reducer = handleActions({
     ADD_BOOK: (state, action) => (//state = books = [{}]
         [...state, action.payload]
     ),
-    GET_BOOK_LIST: (state, action) => {
-        console.log(action.payload);
+    BOOK_LIST: (state, action) => {
         return action.payload;
-    }
+    },
+
+
 }, []);
 
 export default reducer;

@@ -3,30 +3,22 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Menu from './Menu';
-import { getBooks } from '../actions';
-import { createAction } from 'redux-actions';
-import fetch from 'isomorphic-fetch';
+//require('es6-promise').polyfill();
+//import 'isomorphic-fetch';
 
-const addBook = createAction('ADD_BOOK');
+import { asyncConnect } from 'redux-connect'
 
-const getBookList = createAction('GET_BOOK_LIST', async () => {
-    const result = await fetch('//127.0.0.1:3000/list', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    });
-    //console.log(result);
-    return result;
-});
+import {bookList} from '../actions/books.js';
 
+//asyncConnect([{
+//    key: 'books',
+//    promise: ({ params, helpers }) => Promise.resolve({ name: 'Borsch' })
+//}])
 
-const App = ({store, dispatch, children}) => (
+let App = ({store, dispatch, children, books}) => (
     <div>
         <div>
             <Menu />
-            <button onClick={() => dispatch(getBookList())}>dispatch</button>
         </div>
         <div>
             {children}

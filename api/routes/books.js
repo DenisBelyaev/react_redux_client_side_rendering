@@ -1,10 +1,11 @@
 var Router = require('koa-router');
 var Book = require('../models/Book');
 
-var router = new Router({prefix: 'books'});
+var router = new Router();
 
 router
     .param('bookById', function*(id, next) {
+        console.log('---------------------------');
         if (!mongoose.Types.ObjectId.isValid(id)) {
             this.throw(404);
         }
@@ -16,6 +17,11 @@ router
         }
 
         yield* next;
+    })
+    .get('/', function* () {
+        var books = yield Book.find({}, {name: true}).lean();//вернуть обычный обьект не мангузовский
+
+        this.body = JSON.stringify(books);
     })
     .post('/', function*(next) {
         var user = yield Book.create({
