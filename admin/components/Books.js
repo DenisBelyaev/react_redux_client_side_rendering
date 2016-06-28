@@ -1,13 +1,14 @@
 "use strict"
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Book from './Book';
-import {bookList} from '../actions/books.js';
+import {bookList, addBook} from '../actions/books.js';
 
 class Books extends React.Component {
     constructor(props) {
-        console.log(props)
+        console.dir(props);
         super(props);
     }
 
@@ -15,13 +16,8 @@ class Books extends React.Component {
         this.props.dispatch(bookList());
     }
 
-    componentDidMount() {
-        let { onAddClick } = this.props;
-    }
-
-
     render() {
-
+        let { dispatch } = this.props.dispatch;
         return (
             <div>
                 <table>
@@ -38,10 +34,15 @@ class Books extends React.Component {
                     </tbody>
                 </table>
                 <div>
-                    <form ref='form' className="form">
+                    <form ref={(c) => this._form = c} >
                         <input type="text" />
                         <input type="text" />
-                        <button onClick={this.props.onAddClick}>Submit</button>
+                        <button onClick={ (e) => {
+                            e.preventDefault()
+                            var content = ReactDOM.findDOMNode(this._form).elements
+                            console.log(content)
+                            //dispatch(addBook(book))
+                        }}>Submit</button>
                     </form>
                 </div>
             </div>
@@ -53,11 +54,5 @@ class Books extends React.Component {
 module.exports = (connect(
     state => {
         return { books: state.books }
-    },
-    dispatch => {
-        return {
-            dispatch,
-            onAddClick: id => dispatch(addBook(book))
-        }
     }
 )(Books));

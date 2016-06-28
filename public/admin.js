@@ -27435,7 +27435,7 @@ webpackJsonp([0,11],[
 	exports.default = {
 	    component: 'div',
 
-	    indexRoute: { component: __webpack_require__(254) },
+	    //indexRoute: { component: require('../components/App') },
 
 	    childRoutes: [{
 	        path: '/',
@@ -31568,7 +31568,7 @@ webpackJsonp([0,11],[
 	    path: 'books',
 
 	    getComponent: function getComponent(nextState, callback) {
-	        __webpack_require__.e/* nsure */(1/* empty */, function (require) {
+	        __webpack_require__.e/* nsure */(1, function (require) {
 	            callback(null, __webpack_require__(385));
 	        });
 	    },

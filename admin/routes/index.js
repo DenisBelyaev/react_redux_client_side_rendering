@@ -3,7 +3,7 @@
 export default {
     component: 'div',
 
-    indexRoute: { component: require('../components/App') },
+    //indexRoute: { component: require('../components/App') },
 
     childRoutes: [
         {

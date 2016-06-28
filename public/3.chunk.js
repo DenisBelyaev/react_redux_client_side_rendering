@@ -13,6 +13,7 @@ webpackJsonp([3,11],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//stateless function components
 	var Book = function Book(_ref) {
 	    var book = _ref.book;
 
