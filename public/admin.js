@@ -31343,7 +31343,7 @@ webpackJsonp([0,11],[
 
 	var _reduxActions = __webpack_require__(379);
 
-	var api = '//127.0.0.1:3000'; //TODO: add to config
+	var api = '//127.0.0.1:8000'; //TODO: add to config
 
 	//meta: (responeTypeParse = 'text') => ({typeParse: responeTypeParse})
 

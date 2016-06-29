@@ -8,6 +8,6 @@ module.exports = {
     },
     secret: 'secret',
     server: {
-        port: 3000,
+        port: 8000,
     }
 }

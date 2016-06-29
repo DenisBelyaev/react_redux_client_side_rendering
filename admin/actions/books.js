@@ -2,7 +2,7 @@
 
 import { createAction } from 'redux-actions';
 
-let api = '//127.0.0.1:3000';//TODO: add to config
+let api = '//127.0.0.1:8000';//TODO: add to config
 
 //meta: (responeTypeParse = 'text') => ({typeParse: responeTypeParse})
 
