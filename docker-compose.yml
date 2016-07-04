@@ -1,0 +1,40 @@
+version: "2"
+
+services:
+  web:
+    build: .
+    container_name: web
+    network_mode: "myNET"
+    ports:
+            - "8000:8000"
+    volumes:
+         - .:/app
+    working_dir: /app
+    environment:
+        NODE_ENV: development
+    depends_on:
+        - mongo
+    volumes_from:
+        - mongo
+
+  nginx:
+    build: ./nginx/
+    container_name: nginx
+    network_mode: "myNET"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+    volumes_from:
+      - web
+    command: /bin/sh -c "nginx -g 'daemon off;'"
+
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    network_mode: "myNET"
+    ports:
+       - "27017:27017"
+
+

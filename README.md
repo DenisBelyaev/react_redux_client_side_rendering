@@ -1,0 +1,1 @@
+nginx -t -c /js/react_redux_client_side_rendering/nginx/nginx.conf

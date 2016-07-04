@@ -1,9 +1,0 @@
-{
-    "mask": [
-        "{ROOT}/config/**/*.js"
-    ],
-    "instance": "client|server",
-    "env": "prod|dev",
-    "hostname" : "host",
-    "tagSeparator": "#"
-}
