@@ -4,7 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import Book from './Book';
-import {bookList, addBook} from '../actions/books.js';
+import {bookList, removeBook} from '../actions/books.js';
+import AddBookForm from './AddBookForm';
+
 
 class Books extends React.Component {
     constructor(props) {
@@ -17,33 +19,29 @@ class Books extends React.Component {
     }
 
     render() {
-        let { dispatch } = this.props.dispatch;
         return (
             <div>
-                <table>
-                    <thead>
-                    <tr>
-                        <td>name</td>
-                        <td>description</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {this.props.books.map((book, index) => {
-                            return <Book key={index} book={book} />
-                        })}
-                    </tbody>
-                </table>
                 <div>
-                    <form ref={(c) => this._form = c} >
-                        <input type="text" />
-                        <input type="text" />
-                        <button onClick={ (e) => {
-                            e.preventDefault()
-                            var content = ReactDOM.findDOMNode(this._form).elements
-                            console.log(content)
-                            //dispatch(addBook(book))
-                        }}>Submit</button>
-                    </form>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>name</td>
+                            <td>description</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {this.props.books.map((book, index) => {
+                            let remove = () => {
+                                this.props.dispatch(removeBook(book._id));
+                            }
+
+                            return <Book key={index} book={book} remove={remove} />
+                        })}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <AddBookForm />
                 </div>
             </div>
         )

@@ -15,8 +15,12 @@ export default function promiseMiddleware({ dispatch }) {
         return isPromise(action.payload)
         ? action.payload.then(
             response => {
-                let typeParse = action.meta.typeParse || "json";
-                let parsed = response[typeParse]();
+                //TODO: add default type parse
+                //let typeParse = action.meta.typeParse || "json";
+                //console.log(response[typeParse]);
+                //let parsed = response[typeParse]();
+
+                let parsed = response.json();
 
                 parsed.then(result => {
                     dispatch({...action, payload: result});

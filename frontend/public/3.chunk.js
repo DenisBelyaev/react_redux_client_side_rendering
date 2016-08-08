@@ -1,6 +1,6 @@
 webpackJsonp([3,6],{
 
-/***/ 395:
+/***/ 397:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16,6 +16,7 @@ webpackJsonp([3,6],{
 	//stateless function components
 	var Book = function Book(_ref) {
 	    var book = _ref.book;
+	    var remove = _ref.remove;
 
 
 	    return _react2.default.createElement(
@@ -30,6 +31,11 @@ webpackJsonp([3,6],{
 	            'td',
 	            null,
 	            book.description
+	        ),
+	        _react2.default.createElement(
+	            'td',
+	            null,
+	            _react2.default.createElement('input', { type: 'button', value: 'remove', onClick: remove })
 	        )
 	    );
 	};

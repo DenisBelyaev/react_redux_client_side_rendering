@@ -1,6 +1,6 @@
 webpackJsonp([2,6],{
 
-/***/ 396:
+/***/ 444:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9,8 +9,8 @@ webpackJsonp([2,6],{
 	    path: ':id',
 
 	    getComponent: function getComponent(nextState, callback) {
-	        __webpack_require__.e/* nsure */(3, function (require) {
-	            callback(null, __webpack_require__(395));
+	        __webpack_require__.e/* nsure */(3/* empty */, function (require) {
+	            callback(null, __webpack_require__(397));
 	        });
 	    }
 	};

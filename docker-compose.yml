@@ -1,26 +1,39 @@
 version: "2"
 
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  NET_1:
+    driver: bridge
+  NET_2:
+    driver: bridge
+
 services:
   web:
     build: .
     container_name: web
-    network_mode: "myNET"
+    #network_mode: "myNET"
+    networks:
+      NET_1:
+        aliases:
+          - web_alias
     ports:
-            - "8000:8000"
+      - "8000:8000"
     volumes:
-         - .:/app
+      - .:/app
     working_dir: /app
     environment:
         NODE_ENV: development
     depends_on:
         - mongo
-    volumes_from:
-        - mongo
 
   nginx:
     build: ./nginx/
     container_name: nginx
-    network_mode: "myNET"
+    networks:
+      - NET_1
     ports:
       - "3000:3000"
     volumes:
@@ -33,8 +46,11 @@ services:
   mongo:
     image: mongo
     container_name: mongodb
-    network_mode: "myNET"
+    networks:
+       - NET_1
+       - NET_2
     ports:
-       - "27017:27017"
-
+       - "28001:27017"
+    volumes:
+       - mongo-data:/data/db
 

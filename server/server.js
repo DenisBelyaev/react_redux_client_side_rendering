@@ -22,7 +22,6 @@ middlewares.forEach(function(middleware) {
 
 app.use(function* (next) {
     this.type = 'application/json';
-    this.body = 'hello';
     yield* next;
 });
 

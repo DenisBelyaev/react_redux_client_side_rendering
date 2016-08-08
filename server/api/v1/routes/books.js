@@ -1,5 +1,6 @@
 var Router = require('koa-router');
 var Book = require('../models/Book');
+var mongoose = require('mongoose');
 
 var router = new Router();
 
@@ -24,21 +25,24 @@ router
         this.body = JSON.stringify(books);
     })
     .post('/', function*(next) {
-        var user = yield Book.create({
-            name: this.request.body.name
+
+        var book = yield Book.create({
+            name: this.request.body.name,
+            description: this.request.body.description
         });
 
-        this.body = user.toObject();
+        this.body = book.toObject();
     })
     .get('/:bookById', function*(next) {
         this.body = this.bookById.toObject();
     })
     .del('/:bookById', function*(next) {
-        yield this.bookById.remove({});
-        this.body = 'ok';
+        var book = yield Book.remove({_id: this.bookById});
+
+        console.log(book);
+        this.body = book;
     })
     .get('/', function*(next) {
-        console.log('----------------------------');
         var books = yield Book.find({}).lean();
 
         this.body = books;
